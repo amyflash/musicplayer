@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple H5 Music Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .player-container {
+            width: 90%;
+            max-width: 400px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .playlist {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .playlist li {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+        }
+        .playlist li:hover {
+            background-color: #f7f7f7;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .controls button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .controls button:disabled {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="player-container">
+        <ul class="playlist" id="playlist"></ul>
+        <div class="controls">
+            <button id="prev">Previous</button>
+            <button id="play-pause">Play</button>
+            <button id="next">Next</button>
+        </div>
+        <audio id="audio" controls></audio>
+    </div>
+
+    <script src="player.js"></script>
+</body>
+</html>
