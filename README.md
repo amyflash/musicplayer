@@ -21,3 +21,5 @@ Song name | URL address of the song
 笑红尘|https://lv-sycdn.kuwo.cn/6f4f25cf3ce60fdd340088062dd62788/673ed016/resource/30106/trackmedia/M500001m830A1XKGkc.mp3?bitrate$128&from=vip
 难念的经|https://lv-sycdn.kuwo.cn/e5e7b6c22dc69b6669d050b08b1514e8/673ec59f/resource/30106/trackmedia/M500000XOawe2AVXIE.mp3?bitrate$128&from=vip
 沧海一声笑|https://lv-sycdn.kuwo.cn/2c08d3410d1d4c69fda3a1cca4d0700e/673ed585/resource/30106/trackmedia/M500002Z5D1C2nt8ep.mp3?bitrate$128&from=vip
+
+# 所有代码是用通义千问生成的，如果有定制化需求，可以问ai继续修改
