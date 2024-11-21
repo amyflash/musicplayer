@@ -1,3 +1,4 @@
+demo:https://music.amyflash.com
 # musicplayer
 A simple music player that adapts to mobile devices
 这是一个简单的音乐播放器，可以自适应手机端
