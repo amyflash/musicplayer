@@ -1,8 +1,8 @@
-叱咤红人|https://ri-sycdn.kuwo.cn/7ad46780e359e22c64486e4cb1e5fbd9/673ed509/resource/n1/3/78/297266393.mp3?bitrate$128&from=vip
-森林狂想曲|https://ew-sycdn.kuwo.cn/8437e1c2a35dea4b6b762a89afdb6272/673ed67b/resource/n1/68/84/1962897096.mp3?bitrate$128&from=vip
-前世今生|https://rc-sycdn.kuwo.cn/aa85a95fac83ef8b81a474667f07bed6/673ed720/resource/n2/45/79/1881436691.mp3
-难念的经|https://lv-sycdn.kuwo.cn/e5e7b6c22dc69b6669d050b08b1514e8/673ec59f/resource/30106/trackmedia/M500000XOawe2AVXIE.mp3?bitrate$128&from=vip
-沧海一声笑|https://lv-sycdn.kuwo.cn/2c08d3410d1d4c69fda3a1cca4d0700e/673ed585/resource/30106/trackmedia/M500002Z5D1C2nt8ep.mp3?bitrate$128&from=vip
-铁血丹心|https://rh-sycdn.kuwo.cn/4b2c4097cdef8ec4ef6e3c2eeb029c1c/673ecb49/resource/n1/30/22/1654932764.mp3?bitrate$128&from=vip
-追梦人|https://lv-sycdn.kuwo.cn/62d8ffcdbc96b55665e2a563b351d4fa/673eda27/resource/30106/trackmedia/M500003B7al72U1zFk.mp3?bitrate$128&from=vip
-笑红尘|https://lv-sycdn.kuwo.cn/6f4f25cf3ce60fdd340088062dd62788/673ed016/resource/30106/trackmedia/M500001m830A1XKGkc.mp3?bitrate$128&from=vip
+叱咤红人|https://cdn.tusky.io/773306b0-df93-472e-9aaf-a9e9b40ede08
+森林狂想曲|https://cdn.tusky.io/93c65366-0911-497c-a383-57f35aa6205e
+前世今生|https://cdn.tusky.io/c1397f3b-a067-4a05-8d73-5c955f55e3ce
+难念的经|https://music.amyflash.com/nldj.flac
+沧海一声笑|https://cdn.tusky.io/88eee9ec-a501-4bb2-bfeb-1818dd9620eb
+铁血丹心|https://cdn.tusky.io/26305036-0226-4b6d-aa80-b9a95d5d1e7f
+追梦人|https://cdn.tusky.io/1f270ee6-8f8e-4d04-99f8-d40c550c93b6
+笑红尘|https://cdn.tusky.io/ead43f17-da4c-4f18-a856-44e81b037fa6
