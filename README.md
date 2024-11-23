@@ -11,7 +11,7 @@ Put index.html, player.js, and playlist.txt in the same directory, usually the r
 修改playlist.txt文件：
 歌曲名称|歌曲的url地址
 例子:
-叱咤红人|https://xxx.com/1.mp3 \n
+叱咤红人|https://xxx.com/1.mp3 <br>
 森林狂想曲|https://xxx.com/2.flac
 
 
