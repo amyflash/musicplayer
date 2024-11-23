@@ -11,16 +11,24 @@ Put index.html, player.js, and playlist.txt in the same directory, usually the r
 修改playlist.txt文件：
 歌曲名称|歌曲的url地址
 例子:
-笑红尘|https://lv-sycdn.kuwo.cn/6f4f25cf3ce60fdd340088062dd62788/673ed016/resource/30106/trackmedia/M500001m830A1XKGkc.mp3?bitrate$128&from=vip
-难念的经|https://lv-sycdn.kuwo.cn/e5e7b6c22dc69b6669d050b08b1514e8/673ec59f/resource/30106/trackmedia/M500000XOawe2AVXIE.mp3?bitrate$128&from=vip
-沧海一声笑|https://lv-sycdn.kuwo.cn/2c08d3410d1d4c69fda3a1cca4d0700e/673ed585/resource/30106/trackmedia/M500002Z5D1C2nt8ep.mp3?bitrate$128&from=vip
+叱咤红人|https://cdn.tusky.io/773306b0-df93-472e-9aaf-a9e9b40ede08
+森林狂想曲|https://cdn.tusky.io/93c65366-0911-497c-a383-57f35aa6205e
+前世今生|https://cdn.tusky.io/c1397f3b-a067-4a05-8d73-5c955f55e3ce
+沧海一声笑|https://cdn.tusky.io/88eee9ec-a501-4bb2-bfeb-1818dd9620eb
+铁血丹心|https://cdn.tusky.io/26305036-0226-4b6d-aa80-b9a95d5d1e7f
+追梦人|https://cdn.tusky.io/1f270ee6-8f8e-4d04-99f8-d40c550c93b6
+笑红尘|https://cdn.tusky.io/ead43f17-da4c-4f18-a856-44e81b037fa6
 
 ## Replace with your favorite music
 Modify the playlist. txt file:
 Song name | URL address of the song
 ### ex:
-笑红尘|https://lv-sycdn.kuwo.cn/6f4f25cf3ce60fdd340088062dd62788/673ed016/resource/30106/trackmedia/M500001m830A1XKGkc.mp3?bitrate$128&from=vip
-难念的经|https://lv-sycdn.kuwo.cn/e5e7b6c22dc69b6669d050b08b1514e8/673ec59f/resource/30106/trackmedia/M500000XOawe2AVXIE.mp3?bitrate$128&from=vip
-沧海一声笑|https://lv-sycdn.kuwo.cn/2c08d3410d1d4c69fda3a1cca4d0700e/673ed585/resource/30106/trackmedia/M500002Z5D1C2nt8ep.mp3?bitrate$128&from=vip
+叱咤红人|https://cdn.tusky.io/773306b0-df93-472e-9aaf-a9e9b40ede08
+森林狂想曲|https://cdn.tusky.io/93c65366-0911-497c-a383-57f35aa6205e
+前世今生|https://cdn.tusky.io/c1397f3b-a067-4a05-8d73-5c955f55e3ce
+沧海一声笑|https://cdn.tusky.io/88eee9ec-a501-4bb2-bfeb-1818dd9620eb
+铁血丹心|https://cdn.tusky.io/26305036-0226-4b6d-aa80-b9a95d5d1e7f
+追梦人|https://cdn.tusky.io/1f270ee6-8f8e-4d04-99f8-d40c550c93b6
+笑红尘|https://cdn.tusky.io/ead43f17-da4c-4f18-a856-44e81b037fa6
 
 # 所有代码是用通义千问生成的，如果有定制化需求，可以问ai继续修改
