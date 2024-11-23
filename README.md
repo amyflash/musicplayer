@@ -10,7 +10,7 @@ Put index.html, player.js, and playlist.txt in the same directory, usually the r
 ## 替换成自己喜欢的音乐
 修改playlist.txt文件：
 歌曲名称|歌曲的url地址
-例子:
+例子:<br>
 叱咤红人|https://xxx.com/1.mp3 <br>
 森林狂想曲|https://xxx.com/2.flac
 
@@ -18,8 +18,8 @@ Put index.html, player.js, and playlist.txt in the same directory, usually the r
 ## Replace with your favorite music
 Modify the playlist. txt file:
 Song name | URL address of the song
-### ex:
-song1|https://xxx.com/1.mp3
+### ex:<br>
+song1|https://xxx.com/1.mp3<br>
 song2|https://xxx.com/2.flac
 
 # 所有代码是用通义千问生成的，如果有定制化需求，可以问ai继续修改
