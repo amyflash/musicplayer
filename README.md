@@ -15,6 +15,8 @@ Put index.html, player.js, and playlist.txt in the same directory, usually the r
 森林狂想曲|https://xxx.com/2.flac
 
 
+## 目前把新白娘子传奇歌曲全部上链到arweave链上永久保存了 playlist.txt里面即是
+
 ## Replace with your favorite music
 Modify the playlist. txt file:
 Song name | URL address of the song
