@@ -211,10 +211,10 @@ var _hmt = _hmt || [];
             }
 
 function parseLRC(lrcText) {
-    console.log('开始解析LRC文本...'); // 调试：确认函数被调用
+    //console.log('开始解析LRC文本...'); // 调试：确认函数被调用
 
     const lines = lrcText.split('\n');
-    console.log('分割后的行：', lines);  // 调试：查看分割后的每一行内容
+    //console.log('分割后的行：', lines);  // 调试：查看分割后的每一行内容
 
     const result = [];
     const timeRegex = /\[(\d{2}):(\d{2})\.(\d{3})\]/g;  // 加上 'g' 标志，确保是全局匹配
@@ -224,19 +224,19 @@ function parseLRC(lrcText) {
             return; // 跳过元数据行
         }
 
-        console.log(`正在处理第 ${index + 1} 行：`, line);  // 调试：打印当前正在处理的行
+        //console.log(`正在处理第 ${index + 1} 行：`, line);  // 调试：打印当前正在处理的行
 
         // 使用 matchAll 获取所有时间标签匹配
         try {
             const matches = [...line.matchAll(timeRegex)];
             if (matches.length > 0) {
-                console.log('匹配到的时间标签：', matches);  // 只在有匹配时打印
+               // console.log('匹配到的时间标签：', matches);  // 只在有匹配时打印
             } else {
-                console.log('第 ' + (index + 1) + ' 行没有匹配到任何时间标签');
+               // console.log('第 ' + (index + 1) + ' 行没有匹配到任何时间标签');
             }
 
             const text = line.replace(timeRegex, '').trim();  // 去掉时间标签
-            console.log('去掉时间标签后的文本：', text);  // 调试：打印去掉时间标签后的文本
+            //console.log('去掉时间标签后的文本：', text);  // 调试：打印去掉时间标签后的文本
 
             // 如果找到了匹配项并且文本非空
             if (matches.length > 0 && text) {
@@ -249,18 +249,18 @@ function parseLRC(lrcText) {
                 });
             }
         } catch (err) {
-            console.log('匹配过程中出错：', err);
+            //console.log('匹配过程中出错：', err);
         }
     });
 
     // 调试：打印解析过程中 result 的内容
-    console.log('解析过程中 result 的内容：', result); 
+    //console.log('解析过程中 result 的内容：', result); 
 
     // 在最终打印之前，检查 result 是否为空
     if (result.length === 0) {
-        console.log('没有解析到任何有效的时间标签和文本。');
+       // console.log('没有解析到任何有效的时间标签和文本。');
     } else {
-        console.log('最终结果：', result);  // 调试：打印最终返回的结果
+       // console.log('最终结果：', result);  // 调试：打印最终返回的结果
     }
 
     return result.sort((a, b) => a.time - b.time);  // 返回按时间排序的结果
