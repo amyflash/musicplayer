@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐播放器</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .player-container {
+            width: 100%;
+            max-width: 480px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        .song-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .cover {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 15px;
+            background: #eee;
+            border-radius: 50%;
+            background-size: cover;
+        }
+        .progress-container {
+            width: 100%;
+            height: 6px;
+            background: #e0e0e0;
+            border-radius: 3px;
+            margin: 20px 0;
+            cursor: pointer;
+        }
+        .progress-bar {
+            height: 100%;
+            background: #4a90e2;
+            border-radius: 3px;
+            width: 0%;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        .control-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+        }
+        .playlist {
+            list-style: none;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .playlist li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        .playlist li:hover {
+            background: #f5f5f5;
+        }
+        .playlist li.active {
+            color: #4a90e2;
+            font-weight: bold;
+        }
+        .lyrics-container {
+            height: 200px;
+            overflow-y: auto;
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+        .lyric-line {
+            margin: 10px 0;
+            color: #666;
+            transition: all 0.3s;
+        }
+        .lyric-line.active {
+            color: #4a90e2;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="player-container">
+        <div class="song-info">
+            <div class="cover" id="cover"></div>
+            <h2 id="song-title">加载中...</h2>
+            <p id="artist">-</p>
+        </div>
+        <div class="progress-container" id="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <div class="controls">
+            <button class="control-btn" id="prev">⏮</button>
+            <button class="control-btn" id="play-pause">⏯</button>
+            <button class="control-btn" id="next">⏭</button>
+        </div>
+        <div class="lyrics-container" id="lyrics"></div>
+        <ul class="playlist" id="playlist"></ul>
+        <audio id="audio"></audio>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const audio = document.getElementById('audio');
+            const playPauseBtn = document.getElementById('play-pause');
+            const prevBtn = document.getElementById('prev');
+            const nextBtn = document.getElementById('next');
+            const progressContainer = document.getElementById('progress-container');
+            const progressBar = document.getElementById('progress-bar');
+            const playlistElement = document.getElementById('playlist');
+            const lyricsContainer = document.getElementById('lyrics');
+            const songTitleElement = document.getElementById('song-title');
+            const artistElement = document.getElementById('artist');
+            const coverElement = document.getElementById('cover');
+            
+            let currentIndex = 0;
+            let playlist = [];
+            let lyrics = [];
+            
+            // 加载播放列表
+            fetch('playlist.txt?r=1')
+                .then(response => response.text())
+                .then(data => {
+                    playlist = data.split('\n')
+                        .filter(line => line.trim() !== '')
+                        .map(line => {
+                            const [name, url] = line.split('|');
+                            return { 
+                                name: name.trim(), 
+                                url: url.trim(),
+                                artist: '新白娘子传奇' 
+                            };
+                        });
+                    initPlaylist();
+                })
+                .catch(() => {
+                    playlist = [{
+                        name: "示例歌曲",
+                        url: "demo.mp3",
+                        artist: "示例歌手"
+                    }];
+                    initPlaylist();
+                });
+
+            function initPlaylist() {
+                playlistElement.innerHTML = '';
+                playlist.forEach((song, index) => {
+                    const li = document.createElement('li');
+                    li.textContent = `${song.name} - ${song.artist}`;
+                    li.addEventListener('click', () => playSong(index));
+                    playlistElement.appendChild(li);
+                });
+                if(playlist.length > 0) playSong(0);
+            }
+
+            function playSong(index) {
+                currentIndex = index;
+                const song = playlist[currentIndex];
+                audio.src = song.url;
+                songTitleElement.textContent = song.name;
+                artistElement.textContent = song.artist;
+                loadLyrics(song.name);
+                updatePlaylistHighlight();
+                audio.play().catch(e => console.log('自动播放失败:', e));
+                playPauseBtn.textContent = '⏸';
+            }
+
+            function loadLyrics(songName) {
+                const lrcFile = "https://20250722.4everland.store/"+songName.replace(/\.[^/.]+$/, "") + '.lrc';
+                fetch(lrcFile)
+                    .then(response => response.text())
+                    .then(data => {
+                        lyrics = parseLRC(data);
+                        renderLyrics();
+                    })
+                    .catch(() => {
+                        lyricsContainer.innerHTML = '<div class="lyric-line">暂无歌词</div>';
+                    });
+            }
+
+function parseLRC(lrcText) {
+    console.log('开始解析LRC文本...'); // 调试：确认函数被调用
+
+    const lines = lrcText.split('\n');
+    console.log('分割后的行：', lines);  // 调试：查看分割后的每一行内容
+
+    const result = [];
+    const timeRegex = /\[(\d{2}):(\d{2})\.(\d{3})\]/g;  // 加上 'g' 标志，确保是全局匹配
+
+    lines.forEach((line, index) => {
+        if (!line.trim() || line.startsWith("[ti:") || line.startsWith("[ar:") || line.startsWith("[al:") || line.startsWith("[offset:") || line.startsWith("[tool:")) {
+            return; // 跳过元数据行
+        }
+
+        console.log(`正在处理第 ${index + 1} 行：`, line);  // 调试：打印当前正在处理的行
+
+        // 使用 matchAll 获取所有时间标签匹配
+        try {
+            const matches = [...line.matchAll(timeRegex)];
+            if (matches.length > 0) {
+                console.log('匹配到的时间标签：', matches);  // 只在有匹配时打印
+            } else {
+                console.log('第 ' + (index + 1) + ' 行没有匹配到任何时间标签');
+            }
+
+            const text = line.replace(timeRegex, '').trim();  // 去掉时间标签
+            console.log('去掉时间标签后的文本：', text);  // 调试：打印去掉时间标签后的文本
+
+            // 如果找到了匹配项并且文本非空
+            if (matches.length > 0 && text) {
+                matches.forEach(m => {
+                    const minutes = parseInt(m[1], 10);  // 第一组是分钟
+                    const seconds = parseInt(m[2], 10);  // 第二组是秒
+                    const hundredths = parseInt(m[3], 10);  // 第三组是百分之一秒
+                    const totalTime = minutes * 60 + seconds + hundredths / 100;
+                    result.push({ time: totalTime, text });
+                });
+            }
+        } catch (err) {
+            console.log('匹配过程中出错：', err);
+        }
+    });
+
+    // 调试：打印解析过程中 result 的内容
+    console.log('解析过程中 result 的内容：', result); 
+
+    // 在最终打印之前，检查 result 是否为空
+    if (result.length === 0) {
+        console.log('没有解析到任何有效的时间标签和文本。');
+    } else {
+        console.log('最终结果：', result);  // 调试：打印最终返回的结果
+    }
+
+    return result.sort((a, b) => a.time - b.time);  // 返回按时间排序的结果
+}
+
+
+
+
+
+
+            function renderLyrics() {
+                lyricsContainer.innerHTML = '';
+                lyrics.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'lyric-line';
+                    div.dataset.time = item.time;
+                    div.textContent = item.text;
+
+                    lyricsContainer.appendChild(div);
+	   
+                });
+            }
+
+            function updateLyrics(currentTime) {
+                const lines = lyricsContainer.querySelectorAll('.lyric-line');
+                let activeLine = null;
+                
+                for (let i = 0; i < lyrics.length; i++) {
+                    if (currentTime >= lyrics[i].time && 
+                        (i === lyrics.length - 1 || currentTime < lyrics[i+1].time)) {
+                        activeLine = i;
+                        break;
+                    }
+                }
+                
+                lines.forEach((line, index) => {
+                    line.classList.toggle('active', index === activeLine);
+                });
+                
+                if (activeLine !== null && activeLine > 2) {
+                    const scrollTo = lines[activeLine - 2];
+                    lyricsContainer.scrollTo({
+                        top: scrollTo.offsetTop - lyricsContainer.offsetTop - 20,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            function updatePlaylistHighlight() {
+                const items = playlistElement.querySelectorAll('li');
+                items.forEach((item, index) => {
+                    item.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            function togglePlay() {
+                if (audio.paused) {
+                    audio.play();
+                    playPauseBtn.textContent = '⏸';
+                } else {
+                    audio.pause();
+                    playPauseBtn.textContent = '⏯';
+                }
+            }
+
+            function prevSong() {
+                currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+                playSong(currentIndex);
+            }
+
+            function nextSong() {
+                currentIndex = (currentIndex + 1) % playlist.length;
+                playSong(currentIndex);
+            }
+
+            function updateProgress() {
+                const { currentTime, duration } = audio;
+                const progressPercent = (currentTime / duration) * 100;
+                progressBar.style.width = `${progressPercent}%`;
+                updateLyrics(currentTime);
+            }
+
+            function setProgress(e) {
+                const width = this.clientWidth;
+                const clickX = e.offsetX;
+                const duration = audio.duration;
+                audio.currentTime = (clickX / width) * duration;
+            }
+
+            // 事件监听
+            playPauseBtn.addEventListener('click', togglePlay);
+            prevBtn.addEventListener('click', prevSong);
+            nextBtn.addEventListener('click', nextSong);
+            audio.addEventListener('timeupdate', updateProgress);
+            progressContainer.addEventListener('click', setProgress);
+            audio.addEventListener('ended', nextSong);
+        });
+    </script>
+</body>
+</html>
