@@ -150,7 +150,7 @@ var _hmt = _hmt || [];
             let lyrics = [];
             
             // 加载播放列表
-            fetch('playlist.txt?r=1')
+            fetch('https://20250722.4everland.store/playlist.txt')
                 .then(response => response.text())
                 .then(data => {
                     playlist = data.split('\n')
