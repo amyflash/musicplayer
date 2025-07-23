@@ -244,7 +244,7 @@ function parseLRC(lrcText) {
                     const minutes = parseInt(m[1], 10);  // 第一组是分钟
                     const seconds = parseInt(m[2], 10);  // 第二组是秒
                     const hundredths = parseInt(m[3], 10);  // 第三组是百分之一秒
-                    const totalTime = minutes * 60 + seconds + hundredths / 100+2; //歌词提前2秒显示
+                    const totalTime = minutes * 60 + seconds + hundredths / 100-3; //歌词提前2秒显示
                     result.push({ time: totalTime, text });
                 });
             }
