@@ -150,7 +150,7 @@ var _hmt = _hmt || [];
             let lyrics = [];
             
             // 加载播放列表
-            fetch('https://raw.githubusercontent.com/amyflash/musicplayer/refs/heads/main/playlist.txt')
+            fetch('https://xb.cfzy.site/playlist.txt')
                 .then(response => response.text())
                 .then(data => {
                     playlist = data.split('\n')
@@ -198,7 +198,7 @@ var _hmt = _hmt || [];
             }
 
             function loadLyrics(songName) {
-                const lrcFile = "https://ar.4everland.io/T-R8ldpbZYFfqc_k-ixCJJ1mMqj9-VNSZUz2Qmg1rZM";//"https://20250722.4everland.store/"+songName.replace(/\.[^/.]+$/, "") + '.lrc';
+                const lrcFile = "https://xb.cfzy.site/"+songName.replace(/\.[^/.]+$/, "") + '.lrc';
                 fetch(lrcFile)
                     .then(response => response.text())
                     .then(data => {
