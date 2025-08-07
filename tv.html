@@ -688,22 +688,31 @@ function updateLyrics() {
     console.log('--- updateLyrics 结束 ---\n');
 }
 
-        // ===== 显示所有歌词并高亮当前行 =====
-        function displayCurrentLyric() {
-            if (lyricsData.length === 0) {
-                lyricsDisplay.innerHTML = '<p class="no-lyrics">无歌词</p>';
-                return;
-            }
+function displayCurrentLyric() {
+    if (lyricsData.length === 0) {
+        lyricsDisplay.innerHTML = '<p class="no-lyrics">无歌词</p>';
+        return;
+    }
 
-            // 构建所有歌词的HTML，为当前行添加高亮类
-            const lyricsHTML = lyricsData.map((lyricObj, index) => {
-                const isCurrent = index === currentLyricIndex;
-                const text = lyricObj.text || '...'; // 处理空行
-                return `<p class="${isCurrent ? 'current-line' : ''}">${text}</p>`;
-            }).join('');
+    // 构建所有歌词的HTML，为当前行添加高亮类
+    const lyricsHTML = lyricsData.map((lyricObj, index) => {
+        const isCurrent = index === currentLyricIndex;
+        const text = lyricObj.text || '...'; // 处理空行
+        return `<p class="${isCurrent ? 'current-line' : ''}" id="lyric-${index}">${text}</p>`;
+    }).join('');
 
-            lyricsDisplay.innerHTML = lyricsHTML;
-        }
+    lyricsDisplay.innerHTML = lyricsHTML;
+
+    // 确保高亮歌词滚动到屏幕中央
+    const currentLyricElement = document.getElementById(`lyric-${currentLyricIndex}`);
+    if (currentLyricElement) {
+        currentLyricElement.scrollIntoView({
+            behavior: 'smooth',  // 平滑滚动
+            block: 'center',     // 中央对齐
+        });
+    }
+}
+
 
         // ===== 错误处理 =====
         function showError(msg) {
