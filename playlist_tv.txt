@@ -1,17 +1,17 @@
 [
     {
         "name": "001_幻化人形 蛾眉上香 青城山下白素贞",
-        "mp3url": "https://ar.4everland.io/kfXERsG2mEMZM7-lEGvV1rHMDdrsn_X4Sbxro7cxVQg",
+        "mp3url": "https://xb.cfzy.site/001_%E5%B9%BB%E5%8C%96%E4%BA%BA%E5%BD%A2%20%E8%9B%BE%E7%9C%89%E4%B8%8A%E9%A6%99%20%E9%9D%92%E5%9F%8E%E5%B1%B1%E4%B8%8B%E7%99%BD%E7%B4%A0%E8%B4%9E.mp3",
         "lrcurl": "https://xb.cfzy.site/001_%E5%B9%BB%E5%8C%96%E4%BA%BA%E5%BD%A2%20%E8%9B%BE%E7%9C%89%E4%B8%8A%E9%A6%99%20%E9%9D%92%E5%9F%8E%E5%B1%B1%E4%B8%8B%E7%99%BD%E7%B4%A0%E8%B4%9E.lrc"
     },
     {
         "name": "002_踏青 采茶 - 左宏元",
-        "mp3url": "https://ar.4everland.io/rhFI6nX4Vyg0DlX3Ut2tMQRUBnNPdyER0NtKc4qImJc",
+        "mp3url": "https://xb.cfzy.site/002_%E8%B8%8F%E9%9D%92%20%E9%87%87%E8%8C%B6%20-%20%E5%B7%A6%E5%AE%8F%E5%85%83.mp3",
         "lrcurl": "https://xb.cfzy.site/002_%E8%B8%8F%E9%9D%92%20%E9%87%87%E8%8C%B6%20-%20%E5%B7%A6%E5%AE%8F%E5%85%83.lrc"
     },
     {
         "name": "003_慈悲心肠白素贞 - 左宏元",
-        "mp3url": "https://ar.4everland.io/IG1u_s9CBC4cn023TN9ILoy6vTFuBBmjkuL12UbtK1k",
+        "mp3url": "https://xb.cfzy.site/003_%E6%85%88%E6%82%B2%E5%BF%83%E8%82%A0%E7%99%BD%E7%B4%A0%E8%B4%9E%20-%20%E5%B7%A6%E5%AE%8F%E5%85%83.mp3",
         "lrcurl": "https://xb.cfzy.site/003_%E6%85%88%E6%82%B2%E5%BF%83%E8%82%A0%E7%99%BD%E7%B4%A0%E8%B4%9E%20-%20%E5%B7%A6%E5%AE%8F%E5%85%83.lrc"
     }
     
