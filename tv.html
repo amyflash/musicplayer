@@ -259,7 +259,7 @@
 
     <script>
         // ===== 配置：播放列表文件路径 =====
-        const PLAYLIST_FILE = 'https://my.cfzy.site/playlist_tv.txt'; // 改成你自己的音乐源
+        const PLAYLIST_FILE = 'playlist_tv.txt'; // 确保此文件在同目录下
 
         // ===== DOM 元素引用 =====
         const audioPlayer = document.getElementById('audioPlayer');
@@ -307,10 +307,8 @@ initProgressBar(); // <<< 添加这一行
         }
 
 
-// ===== 初始化进度条拖拽功能 =====
-function initProgressBar() {
+        function initProgressBar() {
     const progressBar = document.getElementById('progressBar');
-    let isDragging = false; // 标记是否正在拖拽
 
     // 防止事件冒泡和默认行为
     const preventDefaults = (e) => {
@@ -318,10 +316,22 @@ function initProgressBar() {
         e.stopPropagation();
     };
 
-    // 计算点击/拖拽位置对应的时间
+    // 计算点击/触摸位置对应的时间
     const calculateTime = (e) => {
         const rect = progressBar.getBoundingClientRect();
-        const pos = (e.clientX - rect.left) / rect.width;
+        let clientX;
+
+        // 如果是触摸事件，获取触摸点位置
+        if (e.touches && e.touches[0]) {
+            clientX = e.touches[0].clientX;
+        } else if (e.clientX) {
+            // 如果是鼠标事件，获取鼠标位置
+            clientX = e.clientX;
+        } else {
+            return 0;  // 如果无法获取位置，直接返回 0
+        }
+
+        const pos = (clientX - rect.left) / rect.width;
         return audioPlayer.duration * pos;
     };
 
@@ -334,7 +344,7 @@ function initProgressBar() {
     // 设置播放时间并强制更新UI
     const setPlayTime = (time) => {
         audioPlayer.currentTime = time;
-console.log('拖动设置时间:', time); // 调试：查看设置的时间
+        console.log('点击/触摸设置时间:', time); // 调试：查看设置的时间
         // 强制更新时间显示和歌词
         updateProgress(); // 更新进度条和时间文本
         updateLyrics();   // 强制检查并更新歌词高亮
@@ -342,55 +352,29 @@ console.log('拖动设置时间:', time); // 调试：查看设置的时间
 
     // ===== 事件处理函数 =====
 
-    // 鼠标/触摸按下
-    const handleStart = (e) => {
+    // 鼠标/触摸点击
+    const handleClickOrTouch = (e) => {
         preventDefaults(e);
-        isDragging = true;
         const time = calculateTime(e);
+        setPlayTime(time); // 设置实际播放时间
         updateVisualProgress(time); // 视觉反馈
     };
 
-    // 鼠标/触摸移动
-    const handleMove = (e) => {
-        if (!isDragging) return;
-        preventDefaults(e);
-        const time = calculateTime(e);
-        updateVisualProgress(time); // 实时更新视觉进度
-    };
-
-    // 鼠标/触摸释放
-    const handleEnd = (e) => {
-        if (!isDragging) return;
-        preventDefaults(e);
-        isDragging = false;
-        const time = calculateTime(e);
-        setPlayTime(time); // 设置实际播放时间
-    };
-
-    // 绑定事件
-    ['mousedown', 'touchstart'].forEach(evt => {
-        progressBar.addEventListener(evt, handleStart);
-    });
-    ['mousemove', 'touchmove'].forEach(evt => {
-        document.addEventListener(evt, handleMove); // 监听全局移动事件
-    });
-    ['mouseup', 'touchend', 'touchcancel'].forEach(evt => {
-        document.addEventListener(evt, handleEnd); // 监听全局结束事件
+    // 绑定事件，确保鼠标和触摸设备都能工作
+    ['click', 'touchstart'].forEach(evt => {
+        progressBar.addEventListener(evt, handleClickOrTouch);
     });
 
     // 清理函数 (可选)
     return () => {
-        ['mousedown', 'touchstart'].forEach(evt => {
-            progressBar.removeEventListener(evt, handleStart);
-        });
-        ['mousemove', 'touchmove'].forEach(evt => {
-            document.removeEventListener(evt, handleMove);
-        });
-        ['mouseup', 'touchend', 'touchcancel'].forEach(evt => {
-            document.removeEventListener(evt, handleEnd);
+        ['click', 'touchstart'].forEach(evt => {
+            progressBar.removeEventListener(evt, handleClickOrTouch);
         });
     };
 }
+
+
+
         // ===== 加载播放列表 =====
         async function loadPlaylist() {
             try {
@@ -494,6 +478,7 @@ console.log('拖动设置时间:', time); // 调试：查看设置的时间
             durationElement.textContent = '0:00';
 
             statusMessage.textContent = '就绪';
+            audioPlayer.play().catch(e => console.error('自动播放失败:', e));//自动播放列表
         }
 
         function togglePlayPause() {
@@ -745,5 +730,3 @@ function displayCurrentLyric() {
     </script>
 </body>
 </html>
-
-
